@@ -1,11 +1,9 @@
 <?php
 
+require_once('dbwrapper.php');
+
 define(PASSWORD_AUTHENTICATION, 0);
 define(TOKEN_AUTHENTICATION, 1);
-
-function get_database_config() {
-    return array('null', 'null', 'null'); //dummy, should read from config file
-}
 
 function get_credential($username, $credential_type) {
     $db_credentials = get_database_config();
@@ -33,7 +31,7 @@ function get_credential($username, $credential_type) {
             return $result['token'];
         }
     }
-    return false
+    return false;
 }
 
 function login($username, $password) {
