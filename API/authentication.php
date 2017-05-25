@@ -4,10 +4,10 @@ define(PASSWORD_AUTHENTICATION, 0);
 define(TOKEN_AUTHENTICATION, 1);
 
 function get_database_config() {
-    return array('null', 'null', 'null') //dummy, should read from config file
+    return array('null', 'null', 'null'); //dummy, should read from config file
 }
 
-function get_credential(username, credential_type) {
+function get_credential($username, $credential_type) {
     $db_credentials = get_database_config();
     $connection = new mysqli_connect($db_credentials[0], $db_credentials[1], $db_credentials[2]);
     if ($connection->connect_error) {
@@ -35,7 +35,7 @@ function get_credential(username, credential_type) {
     return false
 }
 
-function login(username, password) {
+function login($username, $password) {
     $stored_secret = get_credential($username, PASSWORD_AUTHENTICATION); //get from database
     if ($stored_secret && password_verify($password, $stored_secret)) {
         generate_token($username);
@@ -45,6 +45,10 @@ function login(username, password) {
     }
 }
 
-function generate_token(username) {
+function store_token($username) {
+    
+}
+
+function generate_token($username) {
     return false;
 }
